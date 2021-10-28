@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:islamy_app/Radio_tab.dart';
-import 'package:islamy_app/Sebha.dart';
 
-import 'Ahadeth.dart';
-import 'Quran.dart';
+import 'file:///C:/flutter%20projects/islamy_app/lib/Radio/Radio_tab.dart';
+import 'file:///C:/flutter%20projects/islamy_app/lib/Sebha/Sebha.dart';
+
+import 'Ahadeth/Ahadeth.dart';
+import 'Quran/Quran.dart';
 import 'main.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islamy_app/HomePage.dart';
-import 'package:islamy_app/Soura_details.dart';
+
+import 'file:///C:/flutter%20projects/islamy_app/lib/Ahadeth/Ahadeth_details.dart';
+import 'file:///C:/flutter%20projects/islamy_app/lib/Quran/Soura_details.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +30,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         HomePage.routename: (buildcontext) => HomePage(),
-        Soura_details.routename: (buildcontext) => Soura_details()
+        Soura_details.routename: (buildcontext) => Soura_details(),
+        Ahadeth_details.routename: (buildcontext) => Ahadeth_details()
       },
       initialRoute: HomePage.routename,
     );
