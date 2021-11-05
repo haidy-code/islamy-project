@@ -16,7 +16,9 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as AhadethDetailsArgs;
-    loadhadethdetails(args.hadeth_index);
+    if (verses.isEmpty) {
+      loadhadethdetails(args.hadeth_index);
+    }
     return Stack(
       children: [
         Image.asset(
@@ -38,17 +40,17 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
           ),
           backgroundColor: Colors.transparent,
           body: Container(
-            margin: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+            margin: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(12)),
             child: verses.isEmpty
                 ? Center(
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Mythemedata.primarycolor)))
+                child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Mythemedata.primarycolor)))
                 : ListView.builder(
-                    itemBuilder: (context, index) {
-                      return Container(
+              itemBuilder: (context, index) {
+                return Container(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
@@ -70,9 +72,15 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
 
   Future<void> loadhadethdetails(int hadeth_index) async {
     String filecontent =
-        await rootBundle.loadString('assets/hadeth/h${hadeth_index + 1}.txt');
+    await rootBundle.loadString('assets/hadeth/h${hadeth_index + 1}.txt');
     List<String> hadeth = filecontent.split('\n');
-    verses = hadeth;
+    List<String> body = [];
+
+    for (int i = 1; i < hadeth.length; i++) {
+      body.add(hadeth[i]);
+    }
+    verses = body;
+
     setState(() {});
   }
 }

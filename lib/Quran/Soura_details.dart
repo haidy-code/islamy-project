@@ -15,7 +15,9 @@ class _Soura_detailsState extends State<Soura_details> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as SoraDetailsArgs;
-    loadsoradetails(args.soura_index);
+    if (verses.isEmpty) {
+      loadsoradetails(args.soura_index);
+    }
     return Stack(
       children: [
         Image.asset(
@@ -37,17 +39,17 @@ class _Soura_detailsState extends State<Soura_details> {
           ),
           backgroundColor: Colors.transparent,
           body: Container(
-            margin: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+            margin: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(12)),
             child: verses.isEmpty
                 ? Center(
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            Mythemedata.primarycolor)))
+                child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        Mythemedata.primarycolor)))
                 : ListView.separated(
-                    itemBuilder: (context, index) {
-                      return Container(
+              itemBuilder: (context, index) {
+                return Container(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
