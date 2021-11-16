@@ -20,7 +20,7 @@ class Ahadeth_name_item extends StatelessWidget {
         children: [
           Text(
             hadethname,
-            style: TextStyle(fontSize: 25, color: Colors.black),
+            style: TextStyle(fontSize: 25, color: Theme.of(context).cardColor),
             textAlign: TextAlign.center,
           ),
         ],

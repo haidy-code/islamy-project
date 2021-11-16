@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamy_app/main.dart';
 
 import 'file:///C:/flutter%20projects/islamy_app/lib/Quran/Sura_name_item.dart';
@@ -135,8 +136,8 @@ class Quran extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(2.0),
           child: Text(
-            'sura name',
-            style: TextStyle(color: Colors.black, fontSize: 25),
+            AppLocalizations.of(context)!.sura_name,
+            style: TextStyle(color: Theme.of(context).cardColor, fontSize: 25),
           ),
         ),
         Container(

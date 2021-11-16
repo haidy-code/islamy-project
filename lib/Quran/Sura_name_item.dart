@@ -22,7 +22,8 @@ class Sura_name_item extends StatelessWidget {
             padding: const EdgeInsets.all(2.0),
             child: Text(
               '${suraname}',
-              style: TextStyle(fontSize: 25),
+              style:
+                  TextStyle(fontSize: 25, color: Theme.of(context).cardColor),
             ),
           ),
         ],

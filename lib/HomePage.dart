@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islamy_app/providers/AppConfigProvider.dart';
+import 'package:islamy_app/settings/Settings.dart';
+import 'package:provider/provider.dart';
 
 import 'file:///C:/flutter%20projects/islamy_app/lib/Radio/Radio_tab.dart';
 import 'file:///C:/flutter%20projects/islamy_app/lib/Sebha/Sebha.dart';
@@ -19,10 +23,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Stack(
       children: [
         Image.asset(
-          'assets/images/main-bachground.png',
+          provider.apptheme == ThemeMode.light
+              ? 'assets/images/main-bachground.png'
+              : 'assets/images/main_background_dark.png',
           height: double.infinity,
           width: double.infinity,
           fit: BoxFit.fill,
@@ -31,9 +39,9 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              'islamy',
+              AppLocalizations.of(context)!.app_title,
               style: TextStyle(
-                color: Colors.black,
+                color: Theme.of(context).cardColor,
               ),
             ),
             backgroundColor: Colors.transparent,
@@ -41,7 +49,9 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.transparent,
           bottomNavigationBar: Theme(
             data: Theme.of(context)
-                .copyWith(canvasColor: Mythemedata.primarycolor),
+                .copyWith(canvasColor: Theme
+                .of(context)
+                .primaryColor),
             child: BottomNavigationBar(
               onTap: (index) {
                 currentpage = index;
@@ -49,41 +59,44 @@ class _HomePageState extends State<HomePage> {
               },
               currentIndex: currentpage,
               backgroundColor: Mythemedata.primarycolor,
-              selectedItemColor: Mythemedata.selectedcolor,
-              unselectedItemColor: Mythemedata.unselectedcolor,
               items: [
                 BottomNavigationBarItem(
                     icon: Image.asset(
                       'assets/images/quran.png',
                       width: 36,
                     ),
-                    label: 'quran'),
+                    label: AppLocalizations.of(context)!.quran),
                 BottomNavigationBarItem(
                     icon: Image.asset(
                       'assets/images/book.png',
                       width: 36,
                     ),
-                    label: 'ahadeth'),
+                    label: AppLocalizations.of(context)!.hadeth),
                 BottomNavigationBarItem(
                     icon: Image.asset(
                       'assets/images/sebha.png',
                       width: 36,
                     ),
-                    label: 'sebha'),
+                    label: AppLocalizations.of(context)!.tasbeh),
                 BottomNavigationBarItem(
                     icon: Image.asset(
                       'assets/images/radio.png',
                       width: 36,
                     ),
-                    label: 'radio'),
+                    label: AppLocalizations.of(context)!.radio),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: AppLocalizations.of(context)!.settings),
               ],
             ),
           ),
-          body: getcurrentpage(),
+          body: views[currentpage],
         ),
       ],
     );
   }
+
+  List<Widget> views = [Quran(), Ahadeth(), Sebha(), Radio_tab(), Settings()];
 
   Widget getcurrentpage() {
     if (currentpage == 0) {
@@ -92,8 +105,10 @@ class _HomePageState extends State<HomePage> {
       return Ahadeth();
     } else if (currentpage == 2) {
       return Sebha();
-    } else {
+    } else if (currentpage == 3) {
       return Radio_tab();
+    } else {
+      return Settings();
     }
     ;
   }

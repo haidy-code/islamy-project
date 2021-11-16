@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamy_app/main.dart';
+import 'package:islamy_app/providers/AppConfigProvider.dart';
+import 'package:provider/provider.dart';
 
 class Soura_details extends StatefulWidget {
   static const String routename = 'souradetails';
@@ -15,13 +17,16 @@ class _Soura_detailsState extends State<Soura_details> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as SoraDetailsArgs;
+    var provider = Provider.of<AppConfigProvider>(context);
     if (verses.isEmpty) {
       loadsoradetails(args.soura_index);
     }
     return Stack(
       children: [
         Image.asset(
-          'assets/images/main-bachground.png',
+          provider.apptheme == ThemeMode.light
+              ? 'assets/images/main-bachground.png'
+              : 'assets/images/main_background_dark.png',
           height: double.infinity,
           width: double.infinity,
           fit: BoxFit.fill,
@@ -32,7 +37,9 @@ class _Soura_detailsState extends State<Soura_details> {
             title: Text(
               '${args.sour_aname}',
               style: TextStyle(
-                color: Colors.black,
+                color: Theme
+                    .of(context)
+                    .cardColor,
               ),
             ),
             backgroundColor: Colors.transparent,
@@ -41,7 +48,10 @@ class _Soura_detailsState extends State<Soura_details> {
           body: Container(
             margin: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                color: Theme
+                    .of(context)
+                    .accentColor,
+                borderRadius: BorderRadius.circular(12)),
             child: verses.isEmpty
                 ? Center(
                 child: CircularProgressIndicator(
@@ -50,14 +60,18 @@ class _Soura_detailsState extends State<Soura_details> {
                 : ListView.separated(
               itemBuilder: (context, index) {
                 return Container(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            verses[index] + '${index + 1}',
-                            style: TextStyle(fontSize: 18),
-                            textAlign: TextAlign.center,
-                            textDirection: TextDirection.rtl,
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      verses[index] + '${index + 1}',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Theme
+                              .of(context)
+                              .cardColor),
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl,
+                    ),
                         ),
                       );
                     },
