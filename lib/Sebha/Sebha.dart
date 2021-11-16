@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islamy_app/main.dart';
+import 'package:islamy_app/providers/AppConfigProvider.dart';
+import 'package:provider/provider.dart';
 
 class Sebha extends StatefulWidget {
   @override
@@ -22,6 +25,7 @@ class _SebhaState extends State<Sebha> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Container(
       width: double.infinity,
       child: Column(
@@ -34,24 +38,40 @@ class _SebhaState extends State<Sebha> {
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height * 0.1),
                   child: Transform.rotate(
-                      angle: angle,
-                      child: Image.asset('assets/images/sebha_body.png')),
+                    angle: angle,
+                    child: Image.asset('assets/images/sebha_body.png'),
+                  ),
                 ),
               ),
               Container(
+                // margin: EdgeInsets.only(
+                //     right: MediaQuery.of(context).size.height * 0.08),
+
+                margin: provider.applang == 'en'
+                    ? EdgeInsets.only(
+                    left: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.145)
+                    : EdgeInsets.only(
+                    right: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.08),
+
                 child: Image.asset('assets/images/sebha_head.png'),
-                margin: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.height * 0.145),
               )
             ],
           ),
           Container(
               margin: EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                'Tasbeh count',
+                AppLocalizations.of(context)!.tasbeh_count,
                 style: TextStyle(
                     fontSize: 25,
-                    color: Colors.black,
+                    color: Theme
+                        .of(context)
+                        .cardColor,
                     fontWeight: FontWeight.w600),
               )),
           Container(

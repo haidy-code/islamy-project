@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islamy_app/providers/AppConfigProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 
@@ -15,6 +17,7 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as AhadethDetailsArgs;
     if (verses.isEmpty) {
       loadhadethdetails(args.hadeth_index);
@@ -22,7 +25,9 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
     return Stack(
       children: [
         Image.asset(
-          'assets/images/main-bachground.png',
+          provider.apptheme == ThemeMode.light
+              ? 'assets/images/main-bachground.png'
+              : 'assets/images/main_background_dark.png',
           height: double.infinity,
           width: double.infinity,
           fit: BoxFit.fill,
@@ -33,7 +38,9 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
             title: Text(
               args.hadeth_aname,
               style: TextStyle(
-                color: Colors.black,
+                color: Theme
+                    .of(context)
+                    .cardColor,
               ),
             ),
             backgroundColor: Colors.transparent,
@@ -42,7 +49,10 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
           body: Container(
             margin: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                color: Theme
+                    .of(context)
+                    .accentColor,
+                borderRadius: BorderRadius.circular(12)),
             child: verses.isEmpty
                 ? Center(
                 child: CircularProgressIndicator(
@@ -51,19 +61,23 @@ class _Ahadeth_detailsState extends State<Ahadeth_details> {
                 : ListView.builder(
               itemBuilder: (context, index) {
                 return Container(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            verses[index],
-                            style: TextStyle(fontSize: 18),
-                            textAlign: TextAlign.center,
-                            textDirection: TextDirection.rtl,
-                          ),
-                        ),
-                      );
-                    },
-                    itemCount: verses.length,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      verses[index],
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Theme
+                              .of(context)
+                              .cardColor),
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl,
+                    ),
                   ),
+                );
+              },
+              itemCount: verses.length,
+            ),
           ),
         ),
       ],

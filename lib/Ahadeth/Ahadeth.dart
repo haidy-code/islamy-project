@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'file:///C:/flutter%20projects/islamy_app/lib/Ahadeth/Ahadeth_name_item.dart';
 
@@ -72,8 +73,8 @@ class Ahadeth extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(2.0),
           child: Text(
-            'ahadeth',
-            style: TextStyle(fontSize: 25, color: Colors.black),
+            AppLocalizations.of(context)!.ahadeth_name,
+            style: TextStyle(fontSize: 25, color: Theme.of(context).cardColor),
             textAlign: TextAlign.center,
           ),
         ),
