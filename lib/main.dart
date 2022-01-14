@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:islamy_app/HomePage.dart';
 import 'package:islamy_app/providers/AppConfigProvider.dart';
 import 'package:provider/provider.dart';
 
-import 'file:///C:/flutter%20projects/islamy_app/lib/Ahadeth/Ahadeth_details.dart';
-import 'file:///C:/flutter%20projects/islamy_app/lib/Quran/Soura_details.dart';
+import 'Ahadeth/Ahadeth_details.dart';
+import 'Quran/Soura_details.dart';
 
 void main() {
   runApp(ChangeNotifierProvider<AppConfigProvider>(

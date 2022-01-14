@@ -4,11 +4,12 @@ import 'package:islamy_app/providers/AppConfigProvider.dart';
 import 'package:islamy_app/settings/Settings.dart';
 import 'package:provider/provider.dart';
 
-import 'file:///C:/flutter%20projects/islamy_app/lib/Radio/Radio_tab.dart';
-import 'file:///C:/flutter%20projects/islamy_app/lib/Sebha/Sebha.dart';
+
 
 import 'Ahadeth/Ahadeth.dart';
 import 'Quran/Quran.dart';
+import 'Radio/Radio_tab.dart';
+import 'Sebha/Sebha.dart';
 import 'main.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //tral
     var provider = Provider.of<AppConfigProvider>(context);
 
     return Stack(

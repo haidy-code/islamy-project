@@ -4,7 +4,9 @@ import 'package:islamy_app/providers/AppConfigProvider.dart';
 import 'package:islamy_app/settings/ThemeButtomSheet.dart';
 import 'package:provider/provider.dart';
 
-import 'file:///C:/flutter%20projects/islamy_app/lib/settings/LanguageButtomSheet.dart';
+import 'LanguageButtomSheet.dart';
+
+
 
 class Settings extends StatefulWidget {
   @override

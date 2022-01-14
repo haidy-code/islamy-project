@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'file:///C:/flutter%20projects/islamy_app/lib/Ahadeth/Ahadeth_details.dart';
+import 'Ahadeth_details.dart';
+
+
 
 class Ahadeth_name_item extends StatelessWidget {
   String hadethname;
